@@ -5,6 +5,7 @@
 
 package org.cfg.services.rs;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,6 +20,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import org.cfg.model.Book;
 import org.cfg.services.bean.BookService;
+import org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider;
+import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 
 /**
  *
@@ -35,6 +38,14 @@ public class BookRSService {
     
     @Context
     private UriInfo info;
+    
+    @GET
+    public Response find(){
+        List<Book> books = bookServiceBean.getBooks();
+        JacksonJsonProvider json = new JacksonJaxbJsonProvider();
+        Book[] bks = new Book[books.size()];
+        return Response.ok(books.toArray(bks)).build();
+    }
     
     @GET
     @Path("{id}")

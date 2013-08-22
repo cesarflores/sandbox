@@ -5,6 +5,7 @@
 
 package org.cfg.services.bean;
 
+import java.util.List;
 import javax.ejb.LocalBean;
 import org.cfg.model.Book;
 
@@ -18,4 +19,6 @@ public interface BookService {
     Book getBook(int id);
     
     boolean createBook(Book book);
+
+    List<Book> getBooks();
 }

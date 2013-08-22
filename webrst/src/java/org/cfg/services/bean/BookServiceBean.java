@@ -5,6 +5,7 @@
 
 package org.cfg.services.bean;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,10 @@ public class BookServiceBean implements BookService{
     public boolean createBook(Book book) {
         entityManager.persist(book);
         return true;
+    }
+
+    public List<Book> getBooks() {
+        return entityManager.createQuery("Select b From Book b").getResultList();
     }
 
 }
