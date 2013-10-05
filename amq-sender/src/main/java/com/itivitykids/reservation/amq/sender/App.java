@@ -28,14 +28,20 @@ public class App {
 
     /**
      * Main method just to run the program.
+     * Vendor type list:
+     * MB = 1
+     * JR = 2
+     * BO = 3
+     * SC = 4
+     * GB = 6
      * @param args 
      */
     public static void main(String[] args) {
         try {
             MSender sender = new MSender();
             Session session = sender.getSession();
-            // Replate with the messge task that you want to send.
-            ITKTask syncTask = createJRSyncTask();
+            // Replate with the vendor type for the message.
+            ITKTask syncTask = getSyncTask(2);
             Message msg = session.createObjectMessage(syncTask);
             sender.send(msg);
             sender.close();
@@ -47,26 +53,12 @@ public class App {
     }
 
     /**
-     * Creates a MindBody sync message.
-     * @return MindBody sync message task.
+     * Creates a sync task for the given vendor type.
+     * 
+     * @param vendorType for which the sync task will be created.
+     * @return sync task message.
      */
-    private static ITKTask createMBSyncTask() {
-        return new VendorSyncTask(1);
-    }
-
-    /**
-     * Creates a Jack Rabbit sync message.
-     * @return Jack Rabbit sync message task.
-     */
-    private static ITKTask createJRSyncTask() {
-        return new VendorSyncTask(2);
-    }
-
-    /**
-     * Creates a GeenBook sync message.
-     * @return GeenBook sync message task.
-     */
-    private static ITKTask createGBSyncTask() {
-        return new VendorSyncTask(6);
+    private static ITKTask getSyncTask(int vendorType) {
+        return new VendorSyncTask(vendorType);
     }
 }

@@ -31,7 +31,7 @@ public class MSender {
      * JMS resource factory implementation name.
      */
     // FIXME: Change it with the ip of where your ActiveMQ is running.
-    public static final String CONNECTION_FACTORY_NAME = "tcp://<ActiveMQMachine-IP>:61616";
+    public static final String CONNECTION_FACTORY_NAME = "tcp://10.31.129.162:61616";
     
     /*
      * JMS connection factory reference.
