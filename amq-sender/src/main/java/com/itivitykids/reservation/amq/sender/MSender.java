@@ -31,32 +31,32 @@ public class MSender {
      * JMS resource factory implementation name.
      */
     // FIXME: Change it with the ip of where your ActiveMQ is running.
-    public static final String CONNECTION_FACTORY_NAME = "tcp://10.31.129.162:61616";
+    public static final String CONNECTION_FACTORY_NAME = "tcp://10.31.176.228:61616";
     
     /*
      * JMS connection factory reference.
      */
-    private ConnectionFactory factory;
+    private final ConnectionFactory factory;
     
     /*
      * JMS connection reference.
      */
-    private Connection connection;
+    private final Connection connection;
     
     /*
      * JMS session seference.
      */
-    private Session session;
+    private final Session session;
     
     /*
      * JMS message producer and sender reference.
      */
-    private MessageProducer producer;
+    private final MessageProducer producer;
     
     /*
      * JMS destination reference.
      */
-    private Destination destination;
+    private final Destination destination;
 
     /**
      * Creating a new Sender instance.

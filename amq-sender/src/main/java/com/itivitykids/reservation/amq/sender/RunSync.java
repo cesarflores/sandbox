@@ -9,22 +9,23 @@ import javax.jms.Session;
 import javax.naming.NamingException;
 
 import com.itivitykids.reservation.messaging.ITKTask;
-import com.itivitykids.reservation.messaging.tasks.VendorSyncTask;
+
+import static com.itivitykids.reservation.amq.sender.SyncTaskFactory.getSyncTask;
 
 /**
- * Send a message to the ActiveMQ queue.
- * It should send the message to the ActiveMQ that the worker is listening.
- * It has a ITKReservationMessaging dependency, if the dependency is not solved
- * ensure that you have the messaging project opened and add the dependency.
- * 
+ * Send a message to the ActiveMQ queue. It should send the message to the
+ * ActiveMQ that the worker is listening. It has a ITKReservationMessaging
+ * dependency, if the dependency is not solved ensure that you have the
+ * messaging project opened and add the dependency.
+ *
  * Just change the message that you need to send compile all project first time
  * and run this file, that should be enough.
- * 
+ *
  * Don't forget change the IP of your ActiveMQ machine in the MSender.java file.
  *
  * @author Cesar Flores
  */
-public class App {
+public class RunSync {
 
     /**
      * Main method just to run the program.
@@ -34,31 +35,22 @@ public class App {
      * BO = 3
      * SC = 4
      * GB = 6
-     * @param args 
+     * @param type 
      */
-    public static void main(String[] args) {
+    public static void run(int type) {
         try {
             MSender sender = new MSender();
             Session session = sender.getSession();
             // Replate with the vendor type for the message.
-            ITKTask syncTask = getSyncTask(2);
+            ITKTask syncTask = getSyncTask(type);
             Message msg = session.createObjectMessage(syncTask);
             sender.send(msg);
             sender.close();
         } catch (JMSException ex) {
-            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RunSync.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NamingException ex) {
-            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RunSync.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    /**
-     * Creates a sync task for the given vendor type.
-     * 
-     * @param vendorType for which the sync task will be created.
-     * @return sync task message.
-     */
-    private static ITKTask getSyncTask(int vendorType) {
-        return new VendorSyncTask(vendorType);
-    }
 }
