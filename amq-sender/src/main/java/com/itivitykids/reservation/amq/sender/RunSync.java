@@ -18,9 +18,6 @@ import static com.itivitykids.reservation.amq.sender.SyncTaskFactory.getSyncTask
  * dependency, if the dependency is not solved ensure that you have the
  * messaging project opened and add the dependency.
  *
- * Just change the message that you need to send compile all project first time
- * and run this file, that should be enough.
- *
  * Don't forget change the IP of your ActiveMQ machine in the MSender.java file.
  *
  * @author Cesar Flores
@@ -28,21 +25,15 @@ import static com.itivitykids.reservation.amq.sender.SyncTaskFactory.getSyncTask
 public class RunSync {
 
     /**
-     * Main method just to run the program.
-     * Vendor type list:
-     * MB = 1
-     * JR = 2
-     * BO = 3
-     * SC = 4
-     * GB = 6
-     * @param type 
+     * Runs sync for the given vendor id.
+     * @param syncMessageText sync message to send.
      */
-    public static void run(int type) {
+    public static void run(String syncMessageText) {
         try {
             MSender sender = new MSender();
             Session session = sender.getSession();
             // Replate with the vendor type for the message.
-            ITKTask syncTask = getSyncTask(type);
+            ITKTask syncTask = getSyncTask(syncMessageText);
             Message msg = session.createObjectMessage(syncTask);
             sender.send(msg);
             sender.close();

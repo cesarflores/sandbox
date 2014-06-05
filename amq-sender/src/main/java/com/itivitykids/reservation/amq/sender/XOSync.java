@@ -1,13 +1,13 @@
 package com.itivitykids.reservation.amq.sender;
 
 /**
- * JackRabbit Sync.
+ * Xola Sync.
  *
  * @author Cesar Flores
  */
-public class JRSync {
+public class XOSync {
 
     public static void main(String[] args) {
-        RunSync.run("SYNC_JACKRABBIT");
+        RunSync.run("SYNC_XOLA");
     }
 }

@@ -8,6 +8,6 @@ package com.itivitykids.reservation.amq.sender;
 public class BOSync {
 
     public static void main(String[] args) {
-        RunSync.run(3);
+        RunSync.run("SYNC_BOOKER");
     }
 }

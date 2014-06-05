@@ -8,6 +8,6 @@ package com.itivitykids.reservation.amq.sender;
 public class SCSync {
 
     public static void main(String[] args) {
-        RunSync.run(4);
+        RunSync.run("SYNC_SCHEDULICITY");
     }
 }

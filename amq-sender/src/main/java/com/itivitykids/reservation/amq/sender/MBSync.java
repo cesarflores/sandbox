@@ -8,6 +8,6 @@ package com.itivitykids.reservation.amq.sender;
 public class MBSync {
 
     public static void main(String[] args) {
-        RunSync.run(1);
+        RunSync.run("SYNC_MINDBODY_ONLINE");
     }
 }

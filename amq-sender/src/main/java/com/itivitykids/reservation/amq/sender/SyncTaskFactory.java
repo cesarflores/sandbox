@@ -13,10 +13,10 @@ public class SyncTaskFactory {
     /**
      * Creates a sync task for the given vendor type.
      *
-     * @param vendorType for which the sync task will be created.
+     * @param syncMessageText for which the sync task will be created.
      * @return sync task message.
      */
-    public static ITKTask getSyncTask(int vendorType) {
-        return new VendorSyncTask(vendorType);
+    public static ITKTask getSyncTask(String syncMessageText) {
+        return new VendorSyncTask(syncMessageText);
     }
 }

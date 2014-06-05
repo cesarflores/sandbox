@@ -8,6 +8,6 @@ package com.itivitykids.reservation.amq.sender;
 public class GBSync {
 
     public static void main(String[] args) {
-        RunSync.run(6);
+        RunSync.run("SYNC_GENBOOK");
     }
 }
